@@ -69,8 +69,15 @@ You don't need to have everything — a partial profile is better than no profil
 - Promotional or marketing content
 - Content that the person has explicitly asked not to be published
 
-[![License: CC BY-SA 4.0](https://github.com/BertinAm/silicon-mountain-archive/blob/aaa29a3dfcff6b9f4e7247435d010cc9fbd6fb88/LICENSE)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ---
 
 ## 🗂️ File Structure
+
+silicon-mountain-archive/
+│
+├── index.html          ← The entire archive (single-file)
+├── README.md           ← This file
+├── CONTRIBUTING.md     ← Detailed contribution guide
+└── SOURCES.md          ← Master list of all sources used
