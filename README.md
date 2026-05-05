@@ -75,9 +75,11 @@ You don't need to have everything — a partial profile is better than no profil
 
 ## 🗂️ File Structure
 
+```text
 silicon-mountain-archive/
 │
 ├── index.html          ← The entire archive (single-file)
 ├── README.md           ← This file
 ├── CONTRIBUTING.md     ← Detailed contribution guide
 └── SOURCES.md          ← Master list of all sources used
+```
