@@ -18,7 +18,7 @@ The archive currently profiles **25+ key figures** across four generations of Si
 
 | Chapter | Period | Focus |
 |--------|--------|-------|
-| I — The Founding Generation | 2006–2009 | PassGCE, AfroVisioN, ActivSpaces |
+| I — The Founding Generation | 2006–2010 | PassGCE, AfroVisioN, ActivSpaces |
 | II — The GDG Wave | 2011–2016 | GDG Buea, Feem, Wikimedia, ICT4KIDS |
 | III — The MountainHub Generation | 2018–Present | MountainHub, CITSCM, Nervtek |
 | IV — The Supporting Cast | All eras | Community builders, connectors |

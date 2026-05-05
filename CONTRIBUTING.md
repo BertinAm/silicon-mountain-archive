@@ -53,7 +53,7 @@ When adding a new profile to `index.html`, copy the structure of an existing pro
 
 Place new profiles in the appropriate chapter section of `index.html`:
 
-- **Chapter I (2006–2009):** Founding generation — PassGCE, AfroVisioN, ActivSpaces era
+- **Chapter I (2006–2010):** Founding generation — PassGCE, AfroVisioN, ActivSpaces era
 - **Chapter II (2011–2016):** GDG wave, second-generation builders
 - **Chapter III (2018–Present):** MountainHub era and current generation
 - **Chapter IV (Supporting Cast):** Use the `scard` format for shorter entries
