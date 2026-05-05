@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silicon Mountain — The Complete Record</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080810;
+  --surface: #0e0e18;
+  --card: #12121e;
+  --card2: #141420;
+  --border: #1e1e30;
+  --accent: #c8933a;
+  --accent2: #7b5ea7;
+  --accent3: #3a8fc8;
+  --text: #e8e4dc;
+  --muted: #7a7a90;
+  --muted2: #5a5a72;
+  --highlight: #f0e6c8;
+  --green: #5ab87e;
+  --red: #b85a5a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'Lora', Georgia, serif; line-height: 1.7; }
+
+/* MASTHEAD */
+.masthead {
+  padding: 70px 64px 56px;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.masthead::before {
+  content: '';
+  position: absolute; top: -200px; right: -150px;
+  width: 800px; height: 800px;
+  background: radial-gradient(ellipse, rgba(200,147,58,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.masthead::after {
+  content: '';
+  position: absolute; bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse, rgba(123,94,167,0.04) 0%, transparent 65%);
+  pointer-events: none;
+}
+.pub-line {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 28px; display: flex; align-items: center; gap: 16px;
+}
+.pub-line::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 300px; }
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(48px,7vw,96px); font-weight: 900; line-height: 0.95; color: var(--highlight); max-width: 800px; margin-bottom: 32px; }
+h1 em { font-style: italic; color: var(--accent); }
+.deck { max-width: 680px; color: var(--muted); font-size: 15.5px; font-style: italic; line-height: 1.85; margin-bottom: 36px; }
+.meta-strip {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted2);
+  border-top: 1px solid var(--border); padding-top: 20px;
+}
+.meta-strip span { display: flex; flex-direction: column; gap: 4px; }
+.meta-strip strong { color: var(--accent); font-size: 10px; letter-spacing: 0.15em; }
+
+/* TIMELINE */
+.timeline {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 64px;
+  overflow-x: auto;
+}
+.timeline-inner {
+  display: flex; padding: 0; min-width: max-content;
+}
+.tl-node {
+  display: flex; flex-direction: column;
+  padding: 20px 32px 20px 0;
+  min-width: 160px;
+  position: relative;
+}
+.tl-node::after {
+  content: '';
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 40%; background: var(--border);
+}
+.tl-node:last-child::after { display: none; }
+.tl-year { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+.tl-event { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+/* CHAPTER HEADINGS */
+.chapter {
+  padding: 56px 64px 0;
+  display: flex; align-items: center; gap: 24px;
+}
+.chapter-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 0.3em; color: var(--accent2); text-transform: uppercase;
+  white-space: nowrap;
+}
+.chapter-title {
+  font-family: 'Playfair Display', serif; font-size: 30px;
+  font-style: italic; color: var(--accent); white-space: nowrap;
+}
+.chapter-line { flex: 1; height: 1px; background: var(--border); }
+
+/* PROFILE GRID */
+.profile-grid { padding: 32px 64px 64px; display: flex; flex-direction: column; gap: 3px; }
+
+/* PROFILE CARD */
+.card {
+  display: grid; grid-template-columns: 260px 1fr;
+  background: var(--card); border: 1px solid var(--border);
+  transition: border-color 0.25s;
+}
+.card:hover { border-color: rgba(200,147,58,0.35); }
+.card.tier2 { background: var(--card2); }
+
+.card-left {
+  padding: 32px 28px;
+  border-right: 1px solid var(--border);
+}
+.pnum { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--muted2); letter-spacing: 0.2em; margin-bottom: 18px; }
+.pname { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--highlight); line-height: 1.2; margin-bottom: 6px; }
+.prole { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--accent); line-height: 1.6; margin-bottom: 16px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+.tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: 8px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 7px; border-radius: 1px; border: 1px solid var(--border); color: var(--muted2);
+}
+.tag.f { border-color: rgba(200,147,58,0.35); color: var(--accent); }
+.tag.a { border-color: rgba(90,184,126,0.35); color: var(--green); }
+.tag.d { border-color: rgba(123,94,167,0.35); color: var(--accent2); }
+.tag.g { border-color: rgba(58,143,200,0.35); color: var(--accent3); }
+
+.socials { display: flex; flex-direction: column; gap: 5px; }
+.slink {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 7px;
+}
+.slink::before { content: '↗'; color: var(--accent); font-size: 10px; }
+.slink:hover { color: var(--accent); }
+.slink.li::before { content: 'in'; font-weight: 600; font-size: 9px; }
+.slink.tw::before { content: 'X'; font-weight: 600; }
+.slink.gh::before { content: 'gh'; font-weight: 600; }
+.slink.fb::before { content: 'fb'; font-weight: 600; }
+.slink.wb::before { content: 'web'; font-weight: 600; }
+.slink.ig::before { content: 'ig'; font-weight: 600; }
+
+.card-right { padding: 32px 40px; display: flex; flex-direction: column; gap: 20px; }
+
+.section { }
+.slabel {
+  font-family: 'IBM Plex Mono', monospace; font-size: 8px;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent2);
+  margin-bottom: 7px;
+}
+.scontent { font-size: 13.5px; line-height: 1.8; color: #bab6b0; }
+.scontent strong { color: var(--highlight); }
+.scontent a { color: var(--accent3); text-decoration: none; }
+
+.co {
+  background: rgba(200,147,58,0.04);
+  border-left: 2px solid rgba(200,147,58,0.5);
+  padding: 11px 18px; margin-top: 6px;
+}
+.co + .co { margin-top: 4px; }
+.coname { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--highlight); }
+.codesc { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+.codate { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--accent); margin-top: 2px; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+.quote {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  font-style: italic; font-size: 13px; color: var(--muted);
+  padding-left: 18px; position: relative;
+}
+.quote::before {
+  content: '\201C';
+  position: absolute; left: 0; top: 10px;
+  font-size: 32px; color: var(--accent); font-family: 'Playfair Display', serif; line-height: 1;
+}
+
+/* SUPPORTING CAST GRID */
+.support-grid { padding: 24px 64px 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.scard { background: var(--card2); border: 1px solid var(--border); padding: 24px; }
+.scard:hover { border-color: rgba(123,94,167,0.3); }
+.scard-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--highlight); margin-bottom: 4px; }
+.scard-role { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--accent); margin-bottom: 10px; line-height: 1.5; }
+.scard-text { font-size: 12.5px; line-height: 1.75; color: #9a9898; }
+.scard-links { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+
+/* ECOSYSTEM SECTION */
+.ecosystem { padding: 64px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 32px; }
+.eco-block h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--accent); margin-bottom: 16px; }
+.eco-block p { font-size: 13.5px; line-height: 1.85; color: #9a9898; margin-bottom: 12px; }
+.eco-block ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.eco-block li { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.eco-block li::before { content: '▸'; color: var(--accent); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 64px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; flex-wrap: wrap;
+}
+.footer-sources { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted2); line-height: 1.9; }
+.footer-title { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--accent); }
+.footer-note { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--muted2); margin-top: 8px; line-height: 1.7; max-width: 420px; }
+
+@media(max-width: 960px) {
+  .masthead, .profile-grid, .chapter, .support-grid, .ecosystem, footer { padding-left: 24px; padding-right: 24px; }
+  .timeline { padding: 0 24px; }
+  .card { grid-template-columns: 1fr; }
+  .card-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .support-grid { grid-template-columns: 1fr; }
+  .eco-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="pub-line">Silicon Mountain · Buea, Cameroon · Research Edition 2025</div>
+  <h1>The Complete<br>Record of<br><em>Silicon Mountain</em></h1>
+  <p class="deck">A definitive investigative profile of every traceable stakeholder who built, shaped, and continues to define Cameroon's premier technology ecosystem — from the first lines of code written in cyber cafes in 2006 to a movement now training children in Liberia in 2025.</p>
+  <div class="meta-strip">
+    <span><strong>Origin</strong>2006 — Buea, SW Cameroon</span>
+    <span><strong>Profiles</strong>25+ Key Figures Documented</span>
+    <span><strong>Research Period</strong>2006 – 2025</span>
+    <span><strong>Sources</strong>LinkedIn · TechCabal · AFP · UNDP · Wikimedia · Quartz Africa · Personal Sites · ZoomInfo · Crunchbase · VOA</span>
+    <span><strong>Compiled</strong>May 2025</span>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline">
+  <div class="timeline-inner">
+    <div class="tl-node"><div class="tl-year">2006</div><div class="tl-event">PassGCE founded.<br>AfroVisioN Group born.</div></div>
+    <div class="tl-node"><div class="tl-year">2008</div><div class="tl-event">Wasamundi launched.<br>Njie & Kwende.</div></div>
+    <div class="tl-node"><div class="tl-year">2009</div><div class="tl-event">ActivSpaces founded.<br>Cameroon's first hub.</div></div>
+    <div class="tl-node"><div class="tl-year">2011</div><div class="tl-event">Njorku launched.<br>Zinger Systems.<br>VC4Africa Meetup.</div></div>
+    <div class="tl-node"><div class="tl-year">2013</div><div class="tl-event">GDG Buea launched.<br>"Silicon Mountain" coined publicly.</div></div>
+    <div class="tl-node"><div class="tl-year">2015</div><div class="tl-event">1st Silicon Mountain Conference.<br>Nervtek & Feem born.</div></div>
+    <div class="tl-node"><div class="tl-year">2017</div><div class="tl-event">Internet shutdown.<br>Crisis begins.<br>Anglophone conflict.</div></div>
+    <div class="tl-node"><div class="tl-year">2019</div><div class="tl-event">Ecosystem rebuilding.<br>Zito Financial scales.<br>MountainHub grows.</div></div>
+    <div class="tl-node"><div class="tl-year">2021</div><div class="tl-event">Buyam co-founded.<br>UNDP backs Nervtek.<br>Digital Renter scales.</div></div>
+    <div class="tl-node"><div class="tl-year">2025</div><div class="tl-event">Nervtek exports<br>to Liberia. Ebot Tabi<br>deep in global AI.</div></div>
+  </div>
+</div>
+
+<!-- ===== CHAPTER I ===== -->
+<div class="chapter">
+  <div class="chapter-num">Chapter I</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-title">The Founding Generation</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-num">2006 — 2009</div>
+</div>
+
+<div class="profile-grid">
+
+<!-- MAMBE CHURCHILL NANJE -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 001 · FOUNDING PIONEER</div>
+    <div class="pname">Mambe Churchill Nanje</div>
+    <div class="prole">Founder & CEO, Njorku · Founder & President, AfroVisioN Group · Co-Founder, Buyam</div>
+    <div class="tags">
+      <span class="tag f">Pioneer</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Buea-based</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://mambenanje.com" target="_blank">mambenanje.com</a>
+      <a class="slink wb" href="https://njorku.com" target="_blank">njorku.com</a>
+      <a class="slink wb" href="https://buyam.co" target="_blank">buyam.co</a>
+      <a class="slink li" href="https://linkedin.com/in/mambe-churchill-nanje-0962535" target="_blank">mambe-churchill-nanje</a>
+      <a class="slink fb" href="https://facebook.com/mambenanje" target="_blank">facebook.com/mambenanje</a>
+      <a class="slink tw" href="https://twitter.com/mambenanje" target="_blank">@mambenanje</a>
+      <a class="slink wb" href="https://afrovisiongroup.com" target="_blank">afrovisiongroup.com</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Born September 1985. Raised in Douala. Attended <strong>Government Bilingual Primary School Sodiko</strong> and <strong>Presbyterian High School Kumba</strong>. Earned a Diploma in Computer Repairs and Maintenance from <strong>Trustech Institute of Technology, Buea</strong> — at the time one of the only formal computing programs in Anglophone Cameroon. Began teaching programming at Trustech before pivoting to entrepreneurship at age 19.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">The PassGCE Moment (2006)</div>
+        <div class="scontent">Co-founded <strong>PassGCE</strong> — Cameroon's first online GCE results platform — alongside Fua Tse, Tata Cyril, and others. The government ordered it shut down for publishing results without authorisation. The team didn't fold; they reconstituted as <strong>AfroVisioN Group</strong>, providing web development to local businesses. This moment is widely regarded as Silicon Mountain's founding act.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Companies & Ventures</div>
+      <div class="co"><div class="coname">AfroVisioN Group Limited</div><div class="codate">2006 – Present · Founder & President</div><div class="codesc">Web, mobile & enterprise software. 500+ clients globally. One of the oldest IT outsourcing companies in Buea. Office space open to young developers to learn to code for free. afrovisiongroup.com</div></div>
+      <div class="co"><div class="coname">Njorku</div><div class="codate">2011 – Present · Founder & CEO</div><div class="codesc">Africa's first job search engine. Now in 15+ African countries. 500,000+ professionals served. 2M+ job opportunities indexed from 50K+ employers. Forbes Top 20 African Startups (2011). FastCompany Most Innovative Companies in Africa (2017). Target: serve 350 million Sub-Saharan youths by 2025.</div></div>
+      <div class="co"><div class="coname">Buyam HQ</div><div class="codate">April 2021 – Present · Co-Founder & CTO</div><div class="codesc">Three-sided marketplace connecting merchants to independent resellers who have customer networks online and offline. Cameroon's answer to hyper-local e-commerce. buyam.co</div></div>
+    </div>
+    <div class="section">
+      <div class="slabel">Awards & Recognition</div>
+      <div class="scontent">Most Outstanding Young Entrepreneur in Buea (JCI, 2009) · Most Outstanding Young Entrepreneur in Cameroon (JCI, 2011) · Vodafone Jump Youth Brand Ambassador (2016) · TRACE TV feature · France 24 "The Observers" documentary subject (2016). Active personal blogger at mambenanje.com covering African e-commerce, hyper-local commerce models, and the challenges of building tech companies in Africa.</div>
+    </div>
+    <div class="quote">The Silicon Mountain community has amazing people, teams and businesses but the major thing lacking in it now is venture capital. This will further help develop the human capital and hence the businesses.</div>
+  </div>
+</div>
+
+<!-- FUA TSE -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 002 · FOUNDING PIONEER</div>
+    <div class="pname">Fua Tse</div>
+    <div class="prole">Co-Founder, ActivSpaces · Co-Founder, Zinger Systems / Zinger Automation</div>
+    <div class="tags">
+      <span class="tag f">Pioneer</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Cameroon</span>
+    </div>
+    <div class="socials">
+      <a class="slink li" href="https://cm.linkedin.com/in/fua-tse-a117aa4b" target="_blank">fua-tse-a117aa4b</div>
+      <a class="slink wb" href="https://activspaces.com" target="_blank">activspaces.com</a>
+      <a class="slink wb" href="mailto:fua.tse@zingersystems.com">fua.tse@zingersystems.com</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Raised in <strong>Bamenda, NW Cameroon</strong>. A teenage addiction to video games evolved into a determination to understand how they were built — the origin of his software engineering path. Earned a <strong>BSc in Mathematics and Computer Science from the University of Buea</strong> (2005–2009). Was considered by peers — including Otto Akama — as the most skilled coder at UB during that era, setting the standard that inspired a generation.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">The AfroVision & PassGCE Era</div>
+        <div class="scontent">Joined Mambe Churchill's AfroVisioN Group as a junior developer while still a student. Led development of <strong>PharmaPro</strong>, a pharmacy retail management system that became dominant in Anglophone Cameroon. His technical ability gave the founding group real credibility. Was present at the core of PassGCE and the subsequent rebranding as AfroVisioN.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Companies</div>
+      <div class="co"><div class="coname">ActivSpaces</div><div class="codate">2009 – Present · Co-Founder</div><div class="codesc">African Centre for Technology, Innovation and Ventures. Co-founded with Valery Colong, Bill Zimmerman, Ebot Tabi & Otto Akama. Cameroon's first and most prominent tech incubator. Now in Buea, Douala, and Bangangté. Chairman: Rebecca Enonchong.</div></div>
+      <div class="co"><div class="coname">Zinger Automation (formerly Zinger Systems)</div><div class="codate">2011 – Present · Co-Founder & Lead Engineer</div><div class="codesc">Full-stack web, mobile and desktop software development. Originally incubated at ActivSpaces. Recently evolved its brand to Zinger Automation. Was a funded company per Tracxn. Fua also served as engineer at Healthlane (Y Combinator W20 alumni) and VC4Africa. LinkedIn title: Lead Engineer at ZINGER AUTOMATION.</div></div>
+    </div>
+    <div class="quote">No capital, relatively no experience, being in Cameroon — you can phantom the numerous challenges of these young men. This drove us to meet Bill Zimmerman who was then a Peace Corps volunteer in Cameroon. Together, we started what is known today as ActivSpaces.</div>
+  </div>
+</div>
+
+<!-- VALERY COLONG -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 003 · FOUNDING PIONEER</div>
+    <div class="pname">Valery Colong</div>
+    <div class="prole">Co-Founder, ActivSpaces · Software Developer · Ecosystem Pioneer</div>
+    <div class="tags">
+      <span class="tag f">Pioneer</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Douala</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://activspaces.com" target="_blank">activspaces.com</a>
+      <a class="slink li" href="#" target="_blank">LinkedIn: Valery Colong</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">The Name Before the Name</div>
+        <div class="scontent">Valery Colong is one of the few people who used the term <strong>"Silicon Mountain" informally as early as 2005</strong> — before Rebecca Enonchong's public coining in 2013. He described using it to capture the ICT revolution unfolding in the Southwest Region. He met Churchill Nanje in the same Computer Science department at UB, and the two became the intellectual core of AfroVisioN before Colong helped launch ActivSpaces.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">ActivSpaces & The Crisis Years</div>
+        <div class="scontent">Was the most publicly visible face of ActivSpaces during the 2017–2019 Anglophone crisis. Spoke candidly to international media including <strong>AFP and AP</strong> about the hub's decline — from 10 active startups in the main hall to just one. His interviews were widely cited in major international publications. Warned he might close if violence continued. Pivoted ActivSpaces to youth coding training to survive.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Role</div>
+      <div class="co"><div class="coname">ActivSpaces — Software Developer</div><div class="codate">2009 – Present</div><div class="codesc">Now based in Douala (relocated from Buea). ZoomInfo records him as Software Developer at ActivSpaces, Douala. Previously served as CEO of Agro-Hub, a startup incubated at ActivSpaces focused on connecting farmers to markets. Still considered one of Silicon Mountain's most important institutional memory holders.</div></div>
+    </div>
+    <div class="quote">Silicon Mountain is just about alive. Before the crisis, there were 10 startups on average in the main hall. Today there's just one. — AFP Interview, 2019</div>
+  </div>
+</div>
+
+<!-- EBOT TABI -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 004 · FOUNDING PIONEER → GLOBAL</div>
+    <div class="pname">Ebot Tabi</div>
+    <div class="prole">Co-Founder, ActivSpaces · CEO, Voyance · CTO, Omniscience · Ex-Engineer, Two Sigma</div>
+    <div class="tags">
+      <span class="tag f">Pioneer</span>
+      <span class="tag d">Diaspora</span>
+      <span class="tag a">Active</span>
+    </div>
+    <div class="socials">
+      <a class="slink li" href="https://linkedin.com/in/ebottabi" target="_blank">ebottabi</a>
+      <a class="slink wb" href="https://f6s.com/member/ebottabi1" target="_blank">F6S: ebottabi1</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">One of the five original founders of ActivSpaces in 2009. His exact educational path has limited public documentation, but his technical progression is traceable through his career. After playing a founding role in Cameroon's first tech incubator, Tabi made a complete career pivot to global elite tech — becoming an engineer at <strong>Two Sigma</strong>, one of the world's premier quantitative hedge funds, placing him among a small group of Silicon Mountain alumni working at the highest levels of global finance technology.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Career Arc</div>
+        <div class="scontent">ActivSpaces (2009) → Two Sigma (quantitative hedge fund engineer) → Techstars Summer 2022 cohort as CEO of Voyance → CTO of Omniscience. Also listed at <strong>DXC Technology</strong> as an Operational Specialist in Ashburn, Virginia. LinkedIn shows him as actively writing on AI's future for African developers, multilingual NLP, and AI democratisation in emerging markets.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Ventures</div>
+      <div class="co"><div class="coname">Voyance (Techstars S'22)</div><div class="codate">2022 – Present · CEO</div><div class="codesc">AI/data startup. Selected for Techstars Summer 2022 cohort — one of the most competitive startup accelerators globally. Contact: voyancehq.com</div></div>
+      <div class="co"><div class="coname">Omniscience</div><div class="codate">Current · CTO</div><div class="codesc">Advanced AI/data platform. CTO role alongside CEO position at Voyance, indicating complementary rather than competing roles.</div></div>
+    </div>
+    <div class="section">
+      <div class="slabel">Public Stance on African AI</div>
+      <div class="scontent">Actively writes on LinkedIn about why African developers are positioned to lead GenAI. Key arguments: multilingual capability (3–5 languages natively = NLP advantage), constraint-driven creativity, a young developer population (60% of Africa under 25), and untapped voice markets in indigenous languages like isiXhosa, Yoruba, and Swahili. A rare Silicon Mountain original now operating at the frontier of global AI.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REBECCA ENONCHONG -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 005 · KEY CATALYST</div>
+    <div class="pname">Rebecca Enonchong</div>
+    <div class="prole">Board Chair, ActivSpaces · Founder & CEO, AppsTech · Co-Founder, I/O Spaces · Vice Chair, WHO Foundation</div>
+    <div class="tags">
+      <span class="tag f">Catalyst</span>
+      <span class="tag d">DC Metro</span>
+      <span class="tag a">Active</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://appstech.com" target="_blank">appstech.com</a>
+      <a class="slink tw" href="https://twitter.com/africatechie" target="_blank">@africatechie</a>
+      <a class="slink li" href="https://linkedin.com/in/rebeccaenonchong" target="_blank">rebeccaenonchong</a>
+      <a class="slink wb" href="https://medium.com/@africatechie" target="_blank">Medium: @africatechie</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">The Naming & The Movement</div>
+        <div class="scontent">Publicly coined the term <strong>"Silicon Mountain"</strong> at BarCamp Cameroon, Catholic University Institute of Buea, in <strong>2013</strong>. The name had circulated informally since ~2005–2011, but Enonchong's public usage at a major event crystallised it. A Cameroonian-born technology entrepreneur who has been based in the <strong>Washington DC metro area</strong> for decades. BS in Sciences + MS in Economics from the <strong>Catholic University of America</strong>. Sold newspapers door-to-door in the US at 15; became manager at the same company at 17.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Core Companies</div>
+        <div class="scontent"><strong>AppsTech</strong> (founded 1999, Bethesda MD): Global Oracle Platinum Partner with clients in 40+ countries. Founded with zero startup capital. <strong>I/O Spaces</strong>: Inclusive co-working space in Silver Spring, Maryland, co-founded to address the lack of inclusive tech infrastructure in the DC metro area.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Board Portfolio (Current)</div>
+      <div class="co"><div class="coname">ActivSpaces</div><div class="codate">Board Chair · Supporting 3 hubs in Cameroon</div></div>
+      <div class="co"><div class="coname">AfriLabs Foundation</div><div class="codate">Trustee & Chair Emeritus · 370+ innovation centers in 52 African countries · 1M+ entrepreneurs supported</div></div>
+      <div class="co"><div class="coname">Additional Boards</div><div class="codesc">WHO Foundation (Vice Chair) · International Chamber of Commerce · VC4Africa · US Exim Bank SAAC · UNECA Center for Digital Excellence · Djibouti Telecom · African Business Angels Network – ABAN (co-founder, Vice President) · Cameroon Angels Network (co-founder)</div></div>
+    </div>
+    <div class="section">
+      <div class="slabel">Awards</div>
+      <div class="scontent">WEF Global Leader for Tomorrow (Davos) · Forbes Top 10 Female Tech Founders in Africa (2014) · NewAfrican Most Influential African (2014, 2016, 2017) · Jeune Afrique Top 50 Most Influential Women (2017) · World's Most Influential Africans (2018, 2019) · African Entrepreneur of the Year, Enterprise Africa (2001) · African Digital Woman finalist (2013) · Female African Leader of the Year, Business Insider (2022). TEDxEuston speaker.</div>
+    </div>
+    <div class="quote">If a black African woman could succeed in America in 1999, then all the entrepreneurs across the world can succeed. Take the energy that could have been a negative one and transform it into something positive — Entrepreneurial Energy.</div>
+  </div>
+</div>
+
+<!-- OTTO AKAMA -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 006 · FOUNDING PIONEER</div>
+    <div class="pname">Otto Paul Akama</div>
+    <div class="prole">Founder & CEO, Makonjo Media · Co-Founder, ActivSpaces · GDG Buea Co-Founder</div>
+    <div class="tags">
+      <span class="tag f">Pioneer</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Buea</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://madeinbuea.com" target="_blank">madeinbuea.com</a>
+      <a class="slink li" href="https://linkedin.com/in/ottopaulakama" target="_blank">ottopaulakama</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Enrolled at UB in 2007 to study <strong>Mathematics</strong>. First heard about Fua Tse as the best coder in the department and began investigating tech communities. Dropped Mathematics and later earned a <strong>B.Eng in Computer and Communications Engineering from University College of Technology Buea</strong> — notably not the University of Buea like most peers. Learned to code primarily in cyber cafes, offering free hardware services in exchange for internet time.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Community Leadership Role</div>
+        <div class="scontent">Co-founded <strong>GDG Buea</strong> (2013) with Isaac Kamga, Nyah Check, and Tah Teche. Led both the <strong>first Silicon Mountain Conference (2015)</strong> and the second (2016) as Community Development Specialist at ActivSpaces. Co-founded: iSolutions Web Services, Molyko.info, Skademy. Was the most cited voice of Silicon Mountain to international media during the 2017–2019 crisis — AFP, AP, Quartz Africa all quoted him extensively. 2019 Oroko Entrepreneurship Honorary Award recipient.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Company</div>
+      <div class="co"><div class="coname">Makonjo Media</div><div class="codate">2017 – Present · Founder & CEO</div><div class="codesc">Digital media and technology company: web design, mobile application development, digital marketing, branding, and content creation. Launched two coding bootcamps in 2019 in partnership with US-based TekCitadel LLC — PHP Web Development Bootcamp and Frontend Web Development Bootcamp for STEM graduates. Mission: "build tools and platforms that promote honest and progressive conversations."</div></div>
+    </div>
+    <div class="section">
+      <div class="slabel">Additional Ventures</div>
+      <div class="scontent"><strong>LCMTours</strong> — co-founder (tourism-tech). <strong>Yopisode</strong> — co-founder (media). <strong>Editor in Chief, Afro Hustler</strong> — Silicon Mountain's primary tech blog. Chose to remain in Buea through the crisis, eventually returning after stints in Douala and Yaoundé. "I realized that I loved Buea a little more than I loved the Internet."</div>
+    </div>
+    <div class="quote">We love Buea. At times I see it as we have a comfort zone in Buea, which is a bad thing. But again, it's due to the lack of trying to leave. We leave and come back.</div>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== CHAPTER II ===== -->
+<div class="chapter">
+  <div class="chapter-num">Chapter II</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-title">The GDG Wave & Second Generation</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-num">2011 — 2016</div>
+</div>
+
+<div class="profile-grid">
+
+<!-- FRITZ EKWOGE -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 007 · 2ND GENERATION</div>
+    <div class="pname">Fritz Ekwoge Ekwoge</div>
+    <div class="prole">Owner, FeePerfect · Creator, Feem App · CTO, Fintech Ltd / Interstellar</div>
+    <div class="tags">
+      <span class="tag f">Early Pioneer</span>
+      <span class="tag a">Active</span>
+    </div>
+    <div class="socials">
+      <a class="slink tw" href="https://twitter.com/ekwogefee" target="_blank">@ekwogefee</a>
+      <a class="slink li" href="https://linkedin.com/in/fritz-ekwoge-ekwoge-51081a26" target="_blank">fritz-ekwoge-ekwoge</a>
+      <a class="slink wb" href="https://feeperfect.com" target="_blank">feeperfect.com</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Graduate of <strong>École Nationale Supérieure Polytechnique, Yaoundé (ENSPY)</strong>. Senior software engineer with documented experience across banking, telecommunications, energy, web development, SEO, and brewery sector technology. One of the early ecosystem names cited by TechCabal and other sources as a foundational figure in Silicon Mountain's culture, alongside the AfroVision founders.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">FeePerfect & Feem</div>
+        <div class="scontent"><strong>FeePerfect</strong> (founded 2010) created <strong>Feem</strong> — a WiFi-based local file transfer app available on Android, iOS, Windows, Linux, and macOS. Feem requires no internet: users transfer files over LAN at high speeds. It hit <strong>100,000 downloads on Google Play</strong> within its first year. It went on to be used across Africa, America, Europe, and globally. Feem was funded by ActivSpaces (per Tracxn). Chairman of FeePerfect AG (Swiss entity per MarketScreener).</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Role</div>
+      <div class="co"><div class="coname">Fintech Ltd / Interstellar</div><div class="codate">April 2017 – Present · CTO</div><div class="codesc">Chief Technology Officer at Fintech Ltd, where he led development of Interstellar — a fintech platform for Cameroon. Per TheOrg.com, this is his primary active role alongside continued ownership of FeePerfect. FeePerfect remains listed as an active Switzerland-incorporated entity.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ALANGI DERICK -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 008 · GLOBAL TRAILBLAZER</div>
+    <div class="pname">Alangi Derick</div>
+    <div class="prole">Senior Software Engineer, Wikimedia Foundation · Co-Founder, Wikimedia Cameroon · GDG Buea Mentor</div>
+    <div class="tags">
+      <span class="tag f">Open Source Pioneer</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Buea-based</span>
+    </div>
+    <div class="socials">
+      <a class="slink li" href="https://linkedin.com/in/derick-alangi" target="_blank">derick-alangi</a>
+      <a class="slink gh" href="https://github.com/alangi-derick" target="_blank">x-savitar (Wikitech)</a>
+      <a class="slink wb" href="https://diff.wikimedia.org/author/derick-alangi" target="_blank">Wikimedia Diff Blog</a>
+      <a class="slink wb" href="https://wikitech.wikimedia.org/wiki/User:Alangi_Derick" target="_blank">Wikitech: X-Savitar</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">The Historic GSoC Milestone</div>
+        <div class="scontent">A Computer Science student at UB in 2015, Derick discovered Wikimedia's Google Summer of Code participation. He submitted 25+ patches to the MediaWiki codebase in months. He was selected — becoming <strong>Wikimedia's first African participant in Google Summer of Code</strong>. He completed the programme, then mentored teenage participants in Google Code-In for two consecutive years (2015, 2016). A landmark achievement that put Silicon Mountain on the global open-source map.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Current Role</div>
+        <div class="scontent">Has worked 9+ years as a technical contributor to the Wikimedia movement. Now holds the title of <strong>Senior Software Engineer at the Wikimedia Foundation</strong>, working on Platform Engineering — shipping patches improving MediaWiki tooling and APIs. Studied Open Source Technology Management at Brandeis University. Co-founded <strong>Wikimedia Cameroon</strong>. Attended WikiIndaba (African Wikimedia conference) multiple years.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Community Work & Projects</div>
+      <div class="scontent">Active mentor at GDG Buea's Elite Programmers Club — goes into universities to code with students. Co-founded the <strong>Climate Justice Map</strong> project. Active on pywikibot and pocketlang open-source projects. LinkedIn (March 2024) showed him sharing job openings for Wikipedia's Abstract Wikipedia project — a multilingual AI knowledge-equity initiative. Wikitech username: <strong>X-Savitar</strong>. IRC handle: xSavitar. Available on GitHub under the same handle.</div>
+    </div>
+    <div class="quote">Wikimedia's goal is to make knowledge free to everyone, and this is what I want to do in my community. I'm trying to get knowledge to people free of charge.</div>
+  </div>
+</div>
+
+<!-- NYAH CHECK -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 009 · GDG WAVE</div>
+    <div class="pname">Nyah Check</div>
+    <div class="prole">Co-Founder, GDG Buea · Developer & Ecosystem Voice</div>
+    <div class="tags">
+      <span class="tag f">2nd Wave</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Buea</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://madeinbuea.com" target="_blank">madeinbuea.com (community)</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="section">
+      <div class="slabel">Story</div>
+      <div class="scontent">One of Silicon Mountain's most compelling origin stories: Nyah Check was enrolled in a <strong>Biochemistry programme at the University of Buea</strong> when he was inspired by the AfroVision founders to pursue programming. He dropped out — an act of conviction — to focus entirely on coding. He later re-enrolled at UB for a degree in <strong>Computer Engineering</strong>. Co-founded <strong>GDG Buea</strong> in 2013 alongside Isaac Kamga, Otto Akama, and Tah Teche. Has been one of the most vocal and candid commentators on the ecosystem's resilience through the crisis years. The GDG communities he helped build went on to send 11+ students to Google Summer of Code from Cameroon in a single year.</div>
+    </div>
+    <div class="quote">It's the passion community members have for programming and startups. Growing up in the oppressive Biya regime developed some form of resilience in the people and the Internet shutdowns on the English speaking regions strengthens our resolve to keep moving forward.</div>
+  </div>
+</div>
+
+<!-- ZOU BRUNO -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 010 · RESILIENCE STORY</div>
+    <div class="pname">Zou Bruno</div>
+    <div class="prole">Founder & CEO, Zouix · Founder, AISCON · President, Africa's Information Security Conference</div>
+    <div class="tags">
+      <span class="tag a">Active</span>
+      <span class="tag g">Limbe</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://zouix.com" target="_blank">zouix.com (Limbe)</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Graduate of the University of Buea with a <strong>BSc in Geographic and Cartographic Sciences</strong>. Presented a weather forecast programme called <strong>Geographica</strong> on Chariot FM radio for several months — an unusual combination of geography and tech media. Speaks English, French, and Spanish. Known as an "ethical hacker" within the Silicon Mountain community. 2018 ICT Award winner for his car security project.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">The Shutdown Innovation</div>
+        <div class="scontent">When the internet was cut in 2017, most founders fled. Zou Bruno stayed — and built <strong>Zoomed</strong>, a <strong>car-tracking application using SMS</strong> that requires no internet at all. The innovation became a celebrated story of crisis-born creativity within Silicon Mountain. Otto Akama cited it directly: "These sessions even led Zuo Bruno to invent a technology that tracks cars with SMS." A perfect illustration of the ecosystem's problem-solving under constraint.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Ventures</div>
+      <div class="co"><div class="coname">Zouix</div><div class="codate">Founded with his spouse · Based in Limbe, Cameroon</div><div class="codesc">Multinational tracking company. Offensive information security solutions. SMS-based tracking systems. SoT (SMS of Things) — allowing non-smart devices to be interconnected over SMS, a breakthrough for low-connectivity environments.</div></div>
+      <div class="co"><div class="coname">AISCON (Africa Information Security Conference)</div><div class="codate">Founder & CEO</div><div class="codesc">Platform for cybersecurity awareness and information security discourse across the African continent. Also built gcehelper.com to help Cameroonian students prepare for GCE Board Examinations.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NZOMETIAH NERVIS -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 011 · RISING STAR</div>
+    <div class="pname">Nzometiah Nervis Tetsop</div>
+    <div class="prole">Founder & CEO, Nervtek · Goodwill Ambassador for Cybersecurity, Cameroonian Ministry of Posts & Telecom · MIT Legatum Foundry Fellow</div>
+    <div class="tags">
+      <span class="tag a">Active</span>
+      <span class="tag g">Buea</span>
+    </div>
+    <div class="socials">
+      <a class="slink li" href="https://linkedin.com/in/nzometiah-nervis-023015163" target="_blank">nzometiah-nervis</a>
+      <a class="slink fb" href="https://facebook.com/nzometia.nervis" target="_blank">nzometia.nervis</a>
+      <a class="slink wb" href="https://nervtek.cc" target="_blank">nervtek.cc</a>
+      <a class="slink ig" href="#" target="_blank">@nervis_nzometia</a>
+      <span class="slink">+237 652 047 825</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">From <strong>Bamenda, NW Cameroon</strong>. Attended GTHS Molyko Buea and GTHS Bamenda before earning a <strong>Bachelor of Engineering in Electrical and Electronic Engineering from the University of Buea</strong>, with a Master's in Power Systems Engineering (also UB). Was Vice-President of the Faculty of Engineering and Technology Student Association (FETSA). Volunteered at New Generation Technologies' ICT4KIDS programme before founding Nervtek.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Awards (Extraordinary Stack)</div>
+        <div class="scontent">2019 ASPY National Engineering Project Competition — 1st Prize · 2019 African Leadership Bridge $6,000 scholarship · <strong>2020 Presidential ICT Award of Cameroon ($27,000)</strong> — youngest ever winner, for the <strong>e-Waste 3D Printer</strong> (a 3D printer built from recycled electronics) · 40 Under 40 Honoree, Cameroon Achievers Magazine (2021, 2022) · TGFIA 2021 Innovation of the Year · <strong>9th Future Africa Leaders Awards — Star Prize ($35,000), Lagos</strong> · MIT Legatum Center Foundry Fellowship.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current: Nervtek</div>
+      <div class="co"><div class="coname">Nervtek</div><div class="codate">2020 – Present · Founder & CEO · nervtek.cc</div><div class="codesc">Youth-led social enterprise. 3 flagship programs: Nervtek Education, Nervtek Makerspace, and Nervtek Community. Teaches coding, drone technology, machine learning, cyber safety, 3D printing, electronics, robotics, and VR. Started with 9 students in Buea in 2020 — now training ~90 annually. UNDP Cameroon partner (2021, 2024). GIZ partner. Cameroonian Ministry of Posts partner. Team includes: Njita Arnaud (Program Manager & STEM Educator), Asobo Joyce Megvie (Director, Nervtek Education), Leku Tita (Community Lead).</div></div>
+    </div>
+    <div class="section">
+      <div class="slabel">2025 Milestone: Exporting to Liberia</div>
+      <div class="scontent">In July–August 2025, Nervtek ran a <strong>Holiday Tech Camp at the University of Liberia's Fendall Campus</strong> — the first-ever technology camp of its kind in Liberia, organized with UNDP Liberia. 60 students (36 girls, 24 boys), ages 7–17. Topics: coding, drones, ML, cyber safety, climate tech, 3D printing, robotics, VR. UNDP Resident Representative attended the opening. Reported by Liberian Observer and Global News Network Liberia (July 2025).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ESAME MONDOA -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 012 · FINTECH BUILDER</div>
+    <div class="pname">Esame Mondoa Junior</div>
+    <div class="prole">Founder & GM, Zito Financial / ZITO Group · Fintech Entrepreneur</div>
+    <div class="tags">
+      <span class="tag a">Active</span>
+      <span class="tag g">Buea / Cameroon</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://esamemondoa.me" target="_blank">esamemondoa.me</a>
+      <a class="slink li" href="https://linkedin.com/in/esamemondoa" target="_blank">esamemondoa</a>
+      <a class="slink wb" href="https://medium.com/@esamemondoa" target="_blank">Medium: @esamemondoa</a>
+      <a class="slink wb" href="https://zitofinancial.cm" target="_blank">zitofinancial.cm</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Grew up in <strong>Muyuka</strong> (rural SW Cameroon) where 90% of businesses were informal. His first business: selling chin-chin at local football competitions. Self-taught in web development, coding, graphics design, and video editing after relocating to Buea for university. Earned a <strong>Depet I in ICT from HTTTC Kumba (ENSET Kumba)</strong>. Experienced a first startup failure with JoyFreelancer before learning the lessons that led to Zito.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">ZITO Group Products</div>
+        <div class="scontent"><strong>Zitopay</strong>: Online payment platform accepting MTN Mobile Money, Orange Money, Express Union, Visa, Mastercard — 17,000+ users. <strong>Zitocard</strong>: Prepaid VISA card rechargeable via mobile money, usable worldwide. <strong>NitroSMS</strong>: Bulk SMS service. <strong>Knight.cm</strong>: Project promotion platform. <strong>Zito Financial CU</strong>: Cooperative Credit Union for wealth management. <strong>Give Cameroon</strong>: Online fundraising platform. Won "Fastest Growing FINTECH Institution" award.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Status</div>
+      <div class="co"><div class="coname">ZITO Group / Zito Financial</div><div class="codate">2015 – Present · Founder & General Manager / Directeur</div><div class="codesc">Cameroon-based fintech. Founded 2015, first solution launched January 2018. RocketReach lists him as Managing Director, Zito Financial Company. LinkedIn title: Directeur @ ZITO Group. Media: featured on MANAGING AFRICA TV, personal blog active at esamemondoa.me. Also chairs Esame's Foundation (non-profit, poverty alleviation). Community leader, teacher, and mentor in Silicon Mountain.</div></div>
+    </div>
+    <div class="quote">I never planned on becoming an entrepreneur but now, I can't imagine doing anything else. This is my journey. Learn how to learn, find your why, read books, have a winning mentality, never sell yourself short.</div>
+  </div>
+</div>
+
+<!-- MPARA FAITH MUWAR -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 013 · WOMEN IN TECH LEADER</div>
+    <div class="pname">Mpara Faith Muwar</div>
+    <div class="prole">Co-Founder & Operations Manager, New Generation Technologies (NGT) · Founder, ICT4KIDS · MBA Candidate, Lagos Business School</div>
+    <div class="tags">
+      <span class="tag a">Active</span>
+      <span class="tag f">Women in Tech</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://techwomen.org/impact-story/mpara-faith-3" target="_blank">TechWomen Profile</a>
+      <a class="slink wb" href="https://obama.org/programs/leaders/africa/2019/mpara-faith" target="_blank">Obama Leaders Africa 2019</a>
+      <a class="slink wb" href="https://f6s.com/mparafaith" target="_blank">F6S: mparafaith</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">From the <strong>North West Region of Cameroon</strong>. Earned a <strong>BSc in Computer Engineering from the University of Buea</strong>. Research background includes developing a novel algorithm for secure GSM communication using hybrid RSA and symmetric cryptography. Co-founded NGT with Mr. Olouge Eya after completing her undergraduate studies. Named one of the 50 Most Influential Young Cameroonians in 2017.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Awards & Recognition</div>
+        <div class="scontent"><strong>TechWomen 2017 Fellow</strong> (US State Dept programme) — mentored at Synopsys. <strong>Tony Elumelu Entrepreneurship Award 2018</strong>. Bertelsmann Data Science Challenge Scholarship. GIST Tech-I Competition semi-finalist (for NGT). Obama Foundation Leaders Africa (2019). OWSD member since 2016. Pass-It-On Award recipient (used to train 62 students in open-source contribution).</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Ventures</div>
+      <div class="co"><div class="coname">New Generation Technologies (NGT) Ltd</div><div class="codate">Co-Founder & Operations Manager</div><div class="codesc">Educational technology and IT solutions company. Products include web-based school records management used for hundreds of thousands of students. IT solutions for schools, hospitals, businesses, and NGOs. ngtltd_tech on X/Twitter.</div></div>
+      <div class="co"><div class="coname">ICT4KIDS</div><div class="codate">Founder — since 2018</div><div class="codesc">Training programme for children ages 5–18 in computing, programming, game development, graphic design, and critical thinking. Launched 2018 in Buea. Plans to expand nationwide through trained facilitators. Training intersects tech with global citizenship and leadership.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DAISY NKWETEYIM -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 014 · GLOBAL ENGINEER</div>
+    <div class="pname">Daisy Nkweteyim</div>
+    <div class="prole">Software Engineer, Amazon · Co-Author, "Building Large Scale Web Apps" · WAAW STEM Cell Founder at UB</div>
+    <div class="tags">
+      <span class="tag d">Diaspora</span>
+      <span class="tag a">Active</span>
+    </div>
+    <div class="socials">
+      <a class="slink li" href="https://linkedin.com/in/daisy-nkweteyim-6a759983" target="_blank">daisy-nkweteyim</a>
+      <a class="slink wb" href="https://largeapps.dev" target="_blank">largeapps.dev (book)</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background & Silicon Mountain Roots</div>
+        <div class="scontent">Studied at the University of Buea where she founded and led the <strong>WAAW STEM Cell</strong> — a student initiative to increase female representation in STEM fields. Her team ran monthly hands-on scientific outreaches in secondary schools, impacting 100+ students. Listed by multiple Silicon Mountain sources alongside Nyah Check and the GDG wave as a "frontrunner of the Silicon Mountain revolution." Recipient of the Pass-It-On Award (used to train 62 students in open-source contribution).</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Current Role</div>
+        <div class="scontent">Now a <strong>Software Engineer at Amazon</strong>. Co-authored <strong>"Building Large Scale Web Apps"</strong> with Addy Osmani (Google Chrome engineering lead) — the book hit <strong>#1 bestseller on Leanpub</strong> across all categories and topped Lulu's engineering category. Active on LinkedIn advocating for cybersecurity culture in tech organisations. The book website: largeapps.dev. Most recent posts (2024) focused on React architecture, cybersecurity, and Satya Nadella's "security above all" directive at Microsoft.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== CHAPTER III ===== -->
+<div class="chapter">
+  <div class="chapter-num">Chapter III</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-title">The MountainHub Generation</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-num">2018 — Present</div>
+</div>
+
+<div class="profile-grid">
+
+<!-- AYUK ETTA -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 015 · ECOSYSTEM ARCHITECT</div>
+    <div class="pname">Ayuk Etta Akum</div>
+    <div class="prole">Founder & CEO, MountainHub · CEO, Iknite Studio · President, Mountain Angel Network · Founder, CITSCM</div>
+    <div class="tags">
+      <span class="tag f">MountainHub</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Yaoundé</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://mountainhub.africa" target="_blank">mountainhub.africa</a>
+      <a class="slink li" href="https://linkedin.com/in/ayuketta" target="_blank">ayuketta</a>
+      <a class="slink li" href="https://linkedin.com/in/ayuk-etta-79357684" target="_blank">ayuk-etta-79357684</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background & Career Arc</div>
+        <div class="scontent"><strong>B.Eng in Computer Software Engineering, University of Buea (2010–2014)</strong>. Last of 15 children. Started career at Diligent Bilingual Foundation setting up computer labs (2010). Joined ActivSpaces as a software engineer (2013). Co-founded <strong>Skylabase</strong> (2015) — software for banks, credit unions, and microfinance institutions. Joined Kuelap (fintech) as partner then became <strong>Managing Director for Africa (2019)</strong>. Filed a certification in Creative Problem Solving from the University of Minnesota.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">The MountainHub Vision</div>
+        <div class="scontent">Founded MountainHub to fill what he identified as a critical gap: a <strong>venture grooming platform</strong> and creativity playground for Cameroon's rising tech generation. Mission: act as co-founder, not just incubator — partnering with innovators to transform ideas into high-growth companies. Has run <strong>national innovation weeks across all 10 regions of Cameroon</strong>. Featured on AFIME (entrepreneurship TV show in Cameroon).</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Full Portfolio</div>
+      <div class="co"><div class="coname">MountainHub</div><div class="codate">Founder & CEO · Buea & Yaoundé</div><div class="codesc">Leading Digital Innovation Hub in Cameroon. Venture building, incubation, acceleration. Bamenda Green Hackathon organiser. National innovation tour across 10 Cameroon regions. 1,580+ Facebook followers. mountainhub.africa</div></div>
+      <div class="co"><div class="coname">Iknite Studio</div><div class="codate">CEO · Africa's Impact Venture Studio</div><div class="codesc">Validating, building and scaling AI-powered fintech & SaaS startups for SMEs. Innovation consulting for corporations and government.</div></div>
+      <div class="co"><div class="coname">CITSCM — Cameroon International Tech Summit</div><div class="codate">Founder</div><div class="codesc">Largest gathering of tech and innovation experts, government officials, and innovation hubs in Cameroon and Central African Sub-Region.</div></div>
+      <div class="co"><div class="coname">Mountain Angel Network</div><div class="codate">President</div><div class="codesc">Investment vehicle supporting technology projects in Cameroon and beyond. Cultivates angel investing culture among local business leaders.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BERMOND YANGE -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 016 · DESIGN PIONEER</div>
+    <div class="pname">Bermond Yange</div>
+    <div class="prole">Co-Founder, Iknite Space (MountainHub) · Product & UX Designer, Solver AI · Co-Founder, Colorfluid Creative Agency</div>
+    <div class="tags">
+      <span class="tag f">MountainHub</span>
+      <span class="tag d">Silicon Valley</span>
+      <span class="tag a">Active</span>
+    </div>
+    <div class="socials">
+      <a class="slink li" href="https://linkedin.com/in/bermond-yange-16382144" target="_blank">bermond-yange-16382144</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Began as a <strong>graphic designer at Unique Printers in Buea</strong>, managing advertising creatives and production. Evolved into UX/UI design work for Silicon Mountain startups and freelancing on Upwork/Odesk globally. Co-founded <strong>Colorfluid Creative Agency</strong> — focused on animation, motion graphics, and advertising campaigns for the Silicon Mountain ecosystem. Documented presence at CITSCM innovation tours in Garoua and Sangmelima (North and South regions). Also does illustration and book design — created the cover for "My First Period Junior" by Royalty World Cameroon.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Current Role</div>
+        <div class="scontent">Now based at <strong>Plug and Play Tech Center, Silicon Valley</strong> (the world's most active tech accelerator) working as <strong>Product, UX and Visual Designer at Solver AI</strong>. A significant transition: from designing for Buea startups to serving as core designer at an AI company in California. Still engages with MountainHub and CITSCM activities. His LinkedIn posts document 3AM hackathon nights across Cameroon and team lunches at Plug and Play.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FONGOH MARTIN TAYONG -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 017 · PROPTECH BUILDER</div>
+    <div class="pname">Fongoh Martin Tayong</div>
+    <div class="prole">Founder & CEO, Digital Renter · Co-Founder & CTO, Farm Master (MountainHub)</div>
+    <div class="tags">
+      <span class="tag f">MountainHub</span>
+      <span class="tag a">Active</span>
+      <span class="tag g">Buea</span>
+    </div>
+    <div class="socials">
+      <a class="slink wb" href="https://digitalrenter.com" target="_blank">digitalrenter.com</a>
+      <a class="slink li" href="https://cm.linkedin.com/in/fongohmartin" target="_blank">fongohmartin</a>
+      <a class="slink wb" href="https://dev.to/bosz" target="_blank">dev.to/bosz</a>
+      <span class="slink">fongohmartin@gmail.com</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Software Engineering graduate, University of Buea. Active in Silicon Mountain's developer community since ~2016. Ranked 10th on GitHub's silicon-mountain users tracker by contributions — a metric of his technical activity. Skills: TypeScript, Laravel, React, React Native, Python, Django, ML/AI. Volunteers in student clubs including Elite Programmers Club and Google Developer Circle Buea. Mentor at Tech Chantier's RRN programme (React/React Native training).</div>
+      </div>
+      <div class="section">
+        <div class="slabel">The Digital Renter Origin Story</div>
+        <div class="scontent">Inspired in 2016 by a <strong>real dispute between a tenant and landlord over an unreceipted rent payment</strong>. Saw the failure mode: manual real estate management in Cameroon was unreliable, opaque, and prone to conflict. Built <strong>Digital Renter</strong> — Cameroon's first comprehensive real estate management platform — nearly abandoned the project 3–5 times but persevered. Vision: become "the eBay for real estate" in Africa.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current Ventures</div>
+      <div class="co"><div class="coname">Digital Renter</div><div class="codate">2016 – Present · Founder & CEO · digitalrenter.com</div><div class="codesc">Connects real estate agencies, landlords, caretakers, and tenants on one platform. Features: property listings, digital rental contracts, payment recording, receipt generation, reports. Covered by Buyam Stories (episodes 10 & 11). One of ActivSpaces' tenants during early years.</div></div>
+      <div class="co"><div class="coname">Farm Master (MountainHub)</div><div class="codate">Co-Founder & CTO</div><div class="codesc">Agritech platform via MountainHub ecosystem. Served as pitch contest judge at MountainHub Buea events (documented via MountainHub LinkedIn).</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SIMON BALEMBA EFFANSA -->
+<div class="card">
+  <div class="card-left">
+    <div class="pnum">PROFILE · 018 · MULTI-SECTOR CONNECTOR</div>
+    <div class="pname">Simon Balemba Effansa, MBA</div>
+    <div class="prole">Founder & Group CEO, Fluide Group (Canada) · Co-Founder, Afrik Jobs · Ex-CEO, Akwajobs · Ex-Dir, Jongo Hub · FasterCapital Country Rep, Cameroon</div>
+    <div class="tags">
+      <span class="tag d">Relocated to Canada</span>
+      <span class="tag a">Active</span>
+    </div>
+    <div class="socials">
+      <a class="slink li" href="https://linkedin.com/in/effansasimonbalemba" target="_blank">effansasimonbalemba</a>
+      <a class="slink tw" href="https://twitter.com/engsimonbalemba" target="_blank">@EngSimonBalemba</a>
+      <a class="slink wb" href="https://about.me/simonbalemba" target="_blank">about.me/simonbalemba</a>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="two-col">
+      <div class="section">
+        <div class="slabel">Background</div>
+        <div class="scontent">Attended close to five secondary schools — a record of movement that forged resilience. Won a scholarship to <strong>University College of Technology Buea (B.Eng, Computer and Communications Engineering)</strong>. Also holds an <strong>Executive MBA in IT and Project Management from Federal University of Technology Owerri, Nigeria</strong>. Certified Career Counselor. Certified Entrepreneurship Instructor (ILO SIYB Master Trainer). Business Process Consultant.</div>
+      </div>
+      <div class="section">
+        <div class="slabel">Silicon Mountain Career</div>
+        <div class="scontent">Traced through ZoomInfo to have held positions at: Zixtech HUB · Healthy Lifestyle Foundation (HELIF) · Immersion Hub · Iknite Studio · Iknite Space · MOCU Official · Bohikor (CEO) · MountainHub · Earldom Group (US) · Akwajobs · Jongo Hub (Executive Director) · Opuvia · Market Trends International (Lagos) · Makonjo Media · Skademy · Gulf-Field University Institute of Petroleum. Also: Board Member, FasterCapital (Dubai-based). Co-Founder, SOPEL Oil & Gas (Nigeria). Board, School of Logistics and Petroleum Port Harcourt.</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="slabel">Current & Most Recent Status</div>
+      <div class="co"><div class="coname">Fluide Group</div><div class="codate">Current · Founder & Group CEO · Mont Royal, Quebec, Canada</div><div class="codesc">Recently relocated to Canada. New venture Fluide Group. LinkedIn based in Douala metro area as of recent posts. ZoomInfo lists Mont Royal, Quebec as base.</div></div>
+      <div class="co"><div class="coname">Afrik Jobs</div><div class="codate">Co-Founder & Vice-Chair</div><div class="codesc">Career advancement platform helping Africans access world-class learning and jobs. Most recent Silicon Mountain-adjacent role before Fluide.</div></div>
+    </div>
+    <div class="quote">World poverty reduction is slow. There is a need to go faster. Digital financial services can make this process quicker.</div>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== CHAPTER IV: SUPPORTING CAST ===== -->
+<div class="chapter">
+  <div class="chapter-num">Chapter IV</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-title">The Supporting Cast</div>
+  <div class="chapter-line"></div>
+  <div class="chapter-num">Every Layer Documented</div>
+</div>
+
+<div class="support-grid">
+
+  <div class="scard">
+    <div class="scard-name">Bill Zimmerman</div>
+    <div class="scard-role">Co-Founder, ActivSpaces · Peace Corps Volunteer · VC4Africa Connector</div>
+    <div class="scard-text">An American Peace Corps volunteer stationed in Cameroon in 2009. His meeting with Fua Tse and Valery Colong was the direct catalyst for ActivSpaces. Wrote the first blog post on 27months.com (now offline) profiling Buea's tech community — in the comments, people began trying to name the phenomenon, which eventually became "Silicon Mountain." Helped popularise the term at the first VC4Africa Meetup in Cameroon (2011). Now based in the US. VC4Africa partner connection established through him.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Isaac Kamga</div>
+    <div class="scard-role">GDG Buea Co-Founder · 1st SMConf Keynote Speaker · Community Architect</div>
+    <div class="scard-text">Co-founded GDG Buea in 2013 alongside Otto Akama, Nyah Check, and Tah Teche. Delivered the community-spirit keynote at the inaugural Silicon Mountain Conference (2015). His focus: community cohesion as Silicon Mountain's competitive advantage. GDG Buea under his leadership was among the first African groups to participate in Google Summer of Code (2013 — contributing to BRL-CAD, OpenMRS, GNOME). Led UB student recruitment for Google Cloud Developers Challenge and Google Open Day.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Tah Teche</div>
+    <div class="scard-role">GDG Buea Co-Founder (4th member)</div>
+    <div class="scard-text">The fourth co-founder of GDG Buea (2013). Part of the core group that organised the developer events, hackathons, and Google programmes outreach that dramatically grew Silicon Mountain's developer population at the University of Buea. Less publicly documented than the other three GDG founders, but cited in all historical records of GDG Buea's founding.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Tata Cyril</div>
+    <div class="scard-role">PassGCE Co-Founder (2006)</div>
+    <div class="scard-text">One of the original PassGCE co-founders alongside Mambe Churchill, Fua Tse, and others in 2006. Documented in TechCabal's Silicon Mountain history article and Document 2 of this research. Part of the founding moment that sparked the entire ecosystem. Limited subsequent digital footprint suggests early exit from public tech activity.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Njie Litumbe Nara & Quincy Kwende</div>
+    <div class="scard-role">Co-Founders, Wasamundi (2008)</div>
+    <div class="scard-text">Founded <strong>Wasamundi.com</strong> — Cameroon's first Yelp-like local business reviews and ratings service — in 2008. One of Silicon Mountain's earliest startups after PassGCE/AfroVision. Positioned to use Google's Prediction API for ML-enhanced local business discovery. Wasamundi became a case study in building hyperlocal digital tools for Cameroon. Documented on madeinbuea.com (2015 posts).</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Otto Isong</div>
+    <div class="scard-role">Founder, AkwaJobs · Silicon Mountain Optimist</div>
+    <div class="scard-text">Founder of AkwaJobs — a job listings platform for the Cameroon market, specifically targeting local employment. One of the ecosystem's most quoted optimists on Silicon Mountain's future. Cited in TechCabal's 2018 history article: "Every ecosystem needs three main components — market, capital and talent. At Silicon Mountain, though we start building for local markets, we mostly see our products expanding to the rest of Africa. So Africa is our market. We have a strategic advantage for that."</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Amin Jefferson</div>
+    <div class="scard-role">CEO, Iknite Studio · MountainHub Co-Founder</div>
+    <div class="scard-text">Listed on MountainHub's founders page as CEO of Iknite Studio — the impact venture studio arm of MountainHub. Regular presence at MountainHub events including Bamenda Green Hackathon and regional innovation tours. Part of the leadership team expanding MountainHub beyond Buea. Works closely alongside Ayuk Etta and Bermond Yange on CITSCM. mountainhub.africa</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">David Awono</div>
+    <div class="scard-role">Co-Founder & CEO, Kamerlingua (MountainHub)</div>
+    <div class="scard-text">Co-Founder & CEO of Kamerlingua — a language technology startup building tools for Cameroonian and African languages. Strategically significant: as AI and NLP demand for under-resourced African languages grows (Fulfulde, Bassa, Duala, Ewondo, etc.), Kamerlingua occupies a unique niche. Listed on mountainhub.africa founders page.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Akah Harvey N.L</div>
+    <div class="scard-role">Founder, AFTA Wallet (MountainHub)</div>
+    <div class="scard-text">Founder of AFTA Wallet — a fintech/digital wallet solution within the Cameroon and broader African tech space. MountainHub-affiliated. Part of the emerging wave of Silicon Mountain fintech builders leveraging mobile money infrastructure. mountainhub.africa</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Ngwang Dieudonne</div>
+    <div class="scard-role">Founder, The Institute of Integrity Building (MountainHub)</div>
+    <div class="scard-text">Founder of The Institute of Integrity Building — working at the intersection of entrepreneurship, ethics, and capacity-building. Listed on mountainhub.africa founders page. Represents a broader vision within MountainHub that includes social and values-based entrepreneurship alongside pure technology.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">MBAS Samuel</div>
+    <div class="scard-role">Founder, Heldis (MountainHub)</div>
+    <div class="scard-text">Founder of Heldis — digital health-adjacent startup within the MountainHub ecosystem. Listed on mountainhub.africa. Minimal additional public digital footprint beyond this listing.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Dr. Kunu Patience</div>
+    <div class="scard-role">MD, Helif (MountainHub)</div>
+    <div class="scard-text">Medical doctor turned tech entrepreneur. Managing Director of Helif — a health technology company within the MountainHub ecosystem. Represents the physician-founder archetype that has become increasingly important in African healthtech as doctors bring clinical expertise to digital health product design. mountainhub.africa</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Agbor Franklen A</div>
+    <div class="scard-role">Founder, Aleigro (MountainHub)</div>
+    <div class="scard-text">Founder of Aleigro — part of the growing fintech/agritech-adjacent startups being incubated through MountainHub. Listed on mountainhub.africa. Minimal public digital footprint beyond the founders listing.</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Sama Tanya</div>
+    <div class="scard-role">Founder, Bequadi</div>
+    <div class="scard-text">Founder of Bequadi — a Silicon Mountain tech blog and community resource platform. Quoted in TechCabal's seminal 2018 history article: "Before Silicon Mountain, Cameroon never had a thriving group of young tech innovators." One of the early commentators who helped document and shape the ecosystem's narrative. bequadi.com</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Lewis Ngwa</div>
+    <div class="scard-role">Senior Software Engineer, Ford Motor Company (USA) · Co-Founder, Go-Groups</div>
+    <div class="scard-text">BSc in Software Engineering (Vice Chancellor Prize for Technological Innovation, UB 2014) + MEng (UB 2017) + MSc Computer Science (Maharishi International University). Worked at JPMorgan Chase & Co, then Ford Motor Company (Detroit). Co-founded Go-Groups — developed the University of Buea and University of Bamenda's Go-Students apps (registration, results, fees) and transport app Paywaka. Presidential University Grants (2011, 2012, 2013). Presidential Prize for Excellence (2017).</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-name">Fritz Ekwoge (repeat/deep note)</div>
+    <div class="scard-role">Twitter: @ekwogefee · Feem: Used in 100+ countries</div>
+    <div class="scard-text">@ekwogefee on X/Twitter. FeePerfect AG listed in Switzerland (MarketScreener data). Feem available on Android, iOS, Windows, Linux, Mac. Key feature: encrypted transfers, resumable transfers, auto-destructing chat messages, LAN-only operation. Funded by ActivSpaces. One of Silicon Mountain's most globally successful product stories. Current employer: CTO at Fintech Ltd (building Interstellar platform, Cameroon).</div>
+  </div>
+
+</div>
+
+<!-- ECOSYSTEM STATE -->
+<div class="ecosystem">
+  <div class="chapter-num" style="padding:0; margin-bottom:12px;">Research Finding · The Physical Ecosystem</div>
+  <div class="chapter-title" style="font-family:'Playfair Display',serif; font-size:26px; color:var(--accent); margin-bottom:8px;">Silicon Mountain: Then vs Now</div>
+  <div class="eco-grid">
+    <div class="eco-block">
+      <h3>The Early Days (2006–2015)</h3>
+      <p>Silicon Mountain was, in its first decade, an almost entirely informal ecosystem centred on a single street in Buea — cyber cafes, dormitory rooms, and eventually the first floor of a modest central-Buea building housing ActivSpaces. The physical infrastructure was radically minimal. Students borrowed computer time at cafes in exchange for hardware maintenance services. The community cohered around shared passion, not shared space.</p>
+      <p>The founding actors were almost all concentrated within walking distance of each other at the University of Buea campus and Molyko neighbourhood. The first Google Developer Group events were held at the Catholic University Institute of Buea. ActivSpaces' early incubation room — described as a "great hall" — held up to 10 startups simultaneously at its peak, before the crisis.</p>
+      <ul>
+        <li>Informal: cyber cafes + university halls</li>
+        <li>ActivSpaces (1 location, central Buea)</li>
+        <li>GDG Buea: Catholic University Institute</li>
+        <li>AfroVisioN: early Molyko office</li>
+        <li>No formal incubation beyond ActivSpaces</li>
+      </ul>
+    </div>
+    <div class="eco-block">
+      <h3>The Current Landscape (2025)</h3>
+      <p>Today, Silicon Mountain's physical presence is simultaneously more institutionalised and more dispersed. The Anglophone crisis forced a geographic expansion that has actually broadened the ecosystem's footprint: entrepreneurs who relocated to Douala and Yaoundé stayed, creating Silicon Mountain outposts in Cameroon's largest cities.</p>
+      <p>ActivSpaces now operates hubs in <strong>three cities: Buea, Douala, and Bangangté</strong>. MountainHub runs operations in <strong>Buea and Yaoundé</strong>, with innovation tours reaching all 10 regions. The Silicon Mountain Conference (SMCON) draws 500+ attendees to Buea annually. Nervtek has taken the model to Liberia. Ebot Tabi is in the US. Daisy Nkweteyim is at Amazon. Bermond Yange is at Plug and Play in Silicon Valley.</p>
+      <ul>
+        <li>ActivSpaces: Buea + Douala + Bangangté</li>
+        <li>MountainHub: Buea + Yaoundé + regional</li>
+        <li>Jongo Hub (Limbe), Zixtech Hub (Limbe)</li>
+        <li>Annual SMCON Conference: 500+ attendees</li>
+        <li>Significant diaspora nodes: USA, Canada, Silicon Valley</li>
+        <li>International reach: Nervtek now in Liberia</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-sources">
+      <strong style="color:var(--accent); display:block; margin-bottom:6px;">PRIMARY SOURCES CONSULTED</strong>
+      TechCabal (2018 Silicon Mountain History) · AfricaIEG.com · Quartz Africa · AFP/AP Wire Dispatches (2017–2019)<br>
+      LinkedIn (25+ individual profiles cross-referenced) · Wikimedia Foundation / Diff.wikimedia.org<br>
+      UNDP Cameroon & Liberia (2024–2025 Nervtek reports) · Liberian Observer (July 2025)<br>
+      madeinbuea.com · mountainhub.africa · mambenanje.com · esamemondoa.me · nervtek.cc<br>
+      Wikipedia: Silicon Mountain (last updated Oct 2025) · VOA Africa · Global Press Journal<br>
+      Crunchbase · ZoomInfo · RocketReach · Tracxn · F6S · TheOrg<br>
+      TechWomen.org · Obama Foundation Leaders Africa · LocWorld · OWSD<br>
+      France 24 "The Observers" (2016) · MacauBusiness · The EastAfrican · FrenchWeb (AFP)<br>
+      Wikitech · GetProg.ai · DeveloperNation · Digital Business Africa · Wutsi
+    </div>
+    <div class="footer-note">
+      NOTE: Profiles for Ngwang Dieudonne, MBAS Samuel, Agbor Franklen, and Dr. Kunu Patience have minimal verifiable public digital footprints beyond their mountainhub.africa founders listing. This is noted in their profiles. All other profiles are sourced from multiple independent data points.
+    </div>
+  </div>
+  <div>
+    <div class="footer-title">Silicon Mountain<br>Buea, Cameroon</div>
+    <div class="footer-note" style="text-align:right; max-width:260px;">A research document. Compiled for journalistic and archival purposes. May 2025.</div>
+  </div>
+</footer>
+
+</body>
+</html>

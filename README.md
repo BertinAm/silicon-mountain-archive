@@ -69,8 +69,44 @@ You don't need to have everything — a partial profile is better than no profil
 - Promotional or marketing content
 - Content that the person has explicitly asked not to be published
 
-[![License: CC BY-SA 4.0](https://github.com/BertinAm/silicon-mountain-archive/blob/aaa29a3dfcff6b9f4e7247435d010cc9fbd6fb88/LICENSE)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ---
 
 ## 🗂️ File Structure
+
+silicon-mountain-archive/
+│
+├── index.html          ← The entire archive (single-file)
+├── README.md           ← This file
+├── CONTRIBUTING.md     ← Detailed contribution guide
+└── SOURCES.md          ← Master list of all sources used
+
+
+---
+
+## 📚 Primary Sources
+
+Research compiled from: TechCabal · AfricaIEG · Quartz Africa · AFP/AP · LinkedIn · Wikimedia Foundation · UNDP Cameroon & Liberia · Liberian Observer · madeinbuea.com · mountainhub.africa · mambenanje.com · Wikipedia: Silicon Mountain · VOA Africa · France 24 · Crunchbase · ZoomInfo · TechWomen.org · Obama Foundation · Digital Business Africa and more.
+
+Full source list in [`SOURCES.md`](./SOURCES.md)
+
+---
+
+## 📜 License
+
+This project is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
+You are free to share and adapt this material for any purpose, including commercially, as long as you give appropriate credit and link back to this repository.
+
+---
+
+## 🙏 Acknowledgements
+
+This archive was seeded from original research conducted in 2025. It stands on the shoulders of the journalists, bloggers, and community members — especially the team at **madeinbuea.com**, **TechCabal**, **Afro Hustler**, and **Digital Business Africa** — who documented Silicon Mountain long before this project existed.
+
+Built with respect for the community it documents.
+
+---
+
+*Silicon Mountain. Buea, Cameroon. Est. 2006.*
