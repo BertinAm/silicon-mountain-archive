@@ -52,7 +52,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Lora', Georgia, 
   margin-bottom: 28px; display: flex; align-items: center; gap: 16px;
 }
 .pub-line::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 300px; }
-h1 { font-family: 'Playfair Display', serif; font-size: clamp(48px,7vw,96px); font-weight: 900; line-height: 0.95; color: var(--highlight); max-width: 800px; margin-bottom: 32px; }
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px,8vw,96px); font-weight: 900; line-height: 0.95; color: var(--highlight); max-width: 800px; margin-bottom: 32px; }
 h1 em { font-style: italic; color: var(--accent); }
 .deck { max-width: 680px; color: var(--muted); font-size: 15.5px; font-style: italic; line-height: 1.85; margin-bottom: 36px; }
 .meta-strip {
@@ -99,7 +99,7 @@ h1 em { font-style: italic; color: var(--accent); }
   white-space: nowrap;
 }
 .chapter-title {
-  font-family: 'Playfair Display', serif; font-size: 30px;
+  font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 30px);
   font-style: italic; color: var(--accent); white-space: nowrap;
 }
 .chapter-line { flex: 1; height: 1px; background: var(--border); }
@@ -215,13 +215,29 @@ footer {
 .footer-note { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--muted2); margin-top: 8px; line-height: 1.7; max-width: 420px; }
 
 @media(max-width: 960px) {
-  .masthead, .profile-grid, .chapter, .support-grid, .ecosystem, footer { padding-left: 24px; padding-right: 24px; }
-  .timeline { padding: 0 24px; }
+  .masthead, .profile-grid, .chapter, .support-grid, .ecosystem, footer { padding-left: 32px; padding-right: 32px; }
+  .timeline { padding: 0 32px; }
   .card { grid-template-columns: 1fr; }
   .card-left { border-right: none; border-bottom: 1px solid var(--border); }
   .two-col, .three-col { grid-template-columns: 1fr; }
   .support-grid { grid-template-columns: 1fr; }
   .eco-grid { grid-template-columns: 1fr; }
+}
+@media(max-width: 600px) {
+  .masthead, .profile-grid, .chapter, .support-grid, .ecosystem, footer { padding-left: 16px; padding-right: 16px; }
+  .timeline { padding: 0 16px; }
+  .masthead { padding-top: 40px; padding-bottom: 32px; }
+  .pub-line { flex-wrap: wrap; gap: 8px; }
+  .pub-line::after { display: none; }
+  .meta-strip { gap: 20px; flex-direction: column; }
+  .chapter { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .chapter-title { white-space: normal; line-height: 1.3; }
+  .chapter-line { width: 100%; margin-top: 4px; }
+  .card-left { padding: 24px 16px; }
+  .card-right { padding: 24px 16px; }
+  .scard { padding: 20px 16px; }
+  .eco-grid { gap: 32px; }
+  footer { flex-direction: column; gap: 24px; }
 }
 </style>
 </head>
